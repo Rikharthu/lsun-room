@@ -13,3 +13,4 @@ tensorboardx==2.1
 tqdm==4.56.0
 loguru==0.7.0
 git+https://github.com/leVirve/OneGAN
+coremltools
