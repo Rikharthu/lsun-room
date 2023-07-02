@@ -37,7 +37,7 @@ def main(args):
             l1_factor=args.l1_factor, l2_factor=args.l2_factor, edge_factor=args.edge_factor
         )
         trainer = pl.Trainer(
-            gpus=1,
+            gpus=0,
             max_epochs=args.epoch,
             resume_from_checkpoint=args.pretrain_path or None,
             callbacks=[checkpoint_callback],
@@ -47,7 +47,7 @@ def main(args):
         trainer.fit(model, train_loader, val_loader)
     elif args.phase == 'eval':
         model = core.LayoutSeg.load_from_checkpoint(args.pretrain_path, backbone=args.backbone)
-        trainer = pl.Trainer(gpus=1, logger=None)
+        trainer = pl.Trainer(gpus=0, logger=None)
         result = trainer.test(model, val_loader)
         logger.info(f'Validate score on {args.dataset}: {result[0]["score"]}')
 

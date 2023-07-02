@@ -64,6 +64,7 @@ class LsunRoomDataset(torch.utils.data.Dataset):
 
 
 def load_lsun_mat(filepath: pathlib.Path) -> Sequence[Scene]:
+    print(f"Loading LSUN mat {filepath}")
     data = loadmat(filepath)
     return [
         Scene(*(m.squeeze() for m in metadata))
